@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookRequestController;
 
 // Home page
 Route::get('/', function () {
@@ -23,6 +25,10 @@ Route::post('/register', [RegisterController::class, 'register']);
 // Protected Routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Role-specific dashboard routes
+    Route::get('/borrower-dashboard', [DashboardController::class, 'borrowerDashboard'])->name('borrower.dashboard');
+    Route::get('/lender-dashboard', [DashboardController::class, 'lenderDashboard'])->name('lender.dashboard');
     
     Route::get('/profile', function () {
         return view('profile');
@@ -43,4 +49,22 @@ Route::middleware('auth')->group(function () {
     // Book Routes
     Route::resource('books', BookController::class);
     Route::get('/browse-books', [BookController::class, 'browse'])->name('books.browse');
+    Route::get('/home', [BookController::class, 'home'])->name('books.home');
+    
+    // Book Request Routes (for lenders)
+    Route::resource('book-requests', BookRequestController::class)->only([
+        'index', 'create', 'store', 'show'
+    ]);
+    
+    // Admin Routes
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/book-requests', [AdminController::class, 'bookRequests'])->name('book-requests');
+        Route::get('/book-requests/{bookRequest}', [AdminController::class, 'showBookRequest'])->name('book-requests.show');
+        Route::post('/book-requests/{bookRequest}/approve', [AdminController::class, 'approveBookRequest'])->name('book-requests.approve');
+        Route::post('/book-requests/{bookRequest}/reject', [AdminController::class, 'rejectBookRequest'])->name('book-requests.reject');
+        Route::get('/approved-books', [AdminController::class, 'approvedBooks'])->name('approved-books');
+        Route::patch('/approved-books/{approvedBook}/status', [AdminController::class, 'updateApprovedBookStatus'])->name('approved-books.update-status');
+        Route::get('/users', [AdminController::class, 'users'])->name('users');
+    });
 });

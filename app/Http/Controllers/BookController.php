@@ -155,14 +155,57 @@ class BookController extends Controller
     /**
      * Display available books for browsing (for borrowers)
      */
-    public function browse()
+    public function browse(Request $request)
     {
-        $books = Book::where('status', 'available')
+        $search = $request->get('search');
+        
+        $query = Book::where('status', 'available')
                     ->where('lender_id', '!=', Auth::id())
-                    ->with('lender')
-                    ->latest()
-                    ->paginate(12);
-                    
-        return view('books.browse', compact('books'));
+                    ->with('lender');
+        
+        // Add search functionality
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('author', 'LIKE', "%{$search}%")
+                  ->orWhere('genre', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+        
+        $books = $query->latest()->paginate(12);
+        
+        return view('books.browse', compact('books', 'search'));
+    }
+
+    /**
+     * Borrower home page - same as browse but for home route
+     */
+    public function home(Request $request)
+    {
+        // Redirect non-borrowers to their appropriate dashboards
+        if (Auth::user()->role !== 'borrower') {
+            return redirect()->route('dashboard');
+        }
+        
+        $search = $request->get('search');
+        
+        $query = Book::where('status', 'available')
+                    ->with('lender');
+        
+        // Add search functionality
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'LIKE', "%{$search}%")
+                  ->orWhere('author', 'LIKE', "%{$search}%")
+                  ->orWhere('genre', 'LIKE', "%{$search}%")
+                  ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+        
+        $books = $query->latest()->paginate(12);
+        $totalBooks = Book::where('status', 'available')->count();
+        
+        return view('books.home', compact('books', 'search', 'totalBooks'));
     }
 }

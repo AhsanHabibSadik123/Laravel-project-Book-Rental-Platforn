@@ -99,13 +99,24 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
-                                @if(Auth::user()->role === 'lender')
+                                
+                                @if(Auth::user()->role === 'admin')
+                                    <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class="fas fa-shield-alt me-2"></i>Admin Panel</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.book-requests') }}"><i class="fas fa-clipboard-list me-2"></i>Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.users') }}"><i class="fas fa-users me-2"></i>Manage Users</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                @elseif(Auth::user()->role === 'lender')
                                     <li><a class="dropdown-item" href="{{ route('books.index') }}"><i class="fas fa-books me-2"></i>My Books</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('book-requests.index') }}"><i class="fas fa-paper-plane me-2"></i>My Book Requests</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('book-requests.create') }}"><i class="fas fa-plus me-2"></i>Submit Book Request</a></li>
+                                    <li><hr class="dropdown-divider"></li>
                                 @elseif(Auth::user()->role === 'borrower')
+                                    <li><a class="dropdown-item" href="{{ route('books.home') }}"><i class="fas fa-home me-2"></i>Home</a></li>
                                     <li><a class="dropdown-item" href="{{ route('books.browse') }}"><i class="fas fa-search me-2"></i>Browse Books</a></li>
                                     <li><a class="dropdown-item" href="/my-rentals"><i class="fas fa-list me-2"></i>My Rentals</a></li>
+                                    <li><hr class="dropdown-divider"></li>
                                 @endif
-                                <li><hr class="dropdown-divider"></li>
+                                
                                 <li><a class="dropdown-item" href="{{ route('profile') }}"><i class="fas fa-user-edit me-2"></i>Profile</a></li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
