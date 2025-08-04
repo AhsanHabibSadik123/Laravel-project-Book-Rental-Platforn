@@ -184,10 +184,6 @@
                                            class="btn btn-outline-primary btn-sm">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('books.edit', $book) }}" 
-                                           class="btn btn-outline-warning btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
                                         <button type="button" 
                                                 class="btn btn-outline-danger btn-sm"
                                                 data-bs-toggle="modal" 

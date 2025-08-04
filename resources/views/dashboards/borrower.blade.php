@@ -32,65 +32,6 @@
         </div>
     </div>
 
-    <!-- Statistics Cards -->
-    <div class="row mb-4">
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center">
-                    <div class="d-flex align-items-center justify-content-center mb-3">
-                        <div class="rounded-circle bg-primary bg-opacity-10 p-3">
-                            <i class="fas fa-book fa-2x text-primary"></i>
-                        </div>
-                    </div>
-                    <h3 class="fw-bold text-primary">{{ $stats['total_available'] }}</h3>
-                    <p class="text-muted mb-0">Available Books</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center">
-                    <div class="d-flex align-items-center justify-content-center mb-3">
-                        <div class="rounded-circle bg-success bg-opacity-10 p-3">
-                            <i class="fas fa-bookmark fa-2x text-success"></i>
-                        </div>
-                    </div>
-                    <h3 class="fw-bold text-success">{{ $stats['active_rentals'] }}</h3>
-                    <p class="text-muted mb-0">Active Rentals</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center">
-                    <div class="d-flex align-items-center justify-content-center mb-3">
-                        <div class="rounded-circle bg-info bg-opacity-10 p-3">
-                            <i class="fas fa-check-circle fa-2x text-info"></i>
-                        </div>
-                    </div>
-                    <h3 class="fw-bold text-info">{{ $stats['books_read'] }}</h3>
-                    <p class="text-muted mb-0">Books Completed</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-3 col-sm-6 mb-3">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="card-body text-center">
-                    <div class="d-flex align-items-center justify-content-center mb-3">
-                        <div class="rounded-circle bg-warning bg-opacity-10 p-3">
-                            <i class="fas fa-dollar-sign fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                    <h3 class="fw-bold text-warning">${{ number_format($stats['total_spent'], 2) }}</h3>
-                    <p class="text-muted mb-0">Total Spent</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Search Results Info -->
     @if($search)
         <div class="row mb-3">

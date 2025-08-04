@@ -181,22 +181,16 @@
                                        class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye me-1"></i> View Details
                                     </a>
-                                    <div class="btn-group" role="group">
-                                        <a href="{{ route('books.edit', $book) }}" 
-                                           class="btn btn-outline-secondary btn-sm">
-                                            <i class="fas fa-edit me-1"></i> Edit
-                                        </a>
-                                        <form action="{{ route('books.destroy', $book) }}" 
-                                              method="POST" 
-                                              class="d-inline"
-                                              onsubmit="return confirm('Are you sure you want to delete this book?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="fas fa-trash me-1"></i> Delete
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <form action="{{ route('books.destroy', $book) }}" 
+                                          method="POST" 
+                                          class="d-inline"
+                                          onsubmit="return confirm('Are you sure you want to delete this book?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

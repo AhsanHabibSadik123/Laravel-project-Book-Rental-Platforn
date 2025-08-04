@@ -91,48 +91,6 @@
                 </div>
             </div>
 
-            <!-- Quick Navigation -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">📋 Quick Navigation</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <a href="{{ route('admin.book-requests') }}" class="btn btn-outline-warning w-100 d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <i class="fas fa-clock me-2"></i>
-                                            <span>Pending Requests</span>
-                                        </div>
-                                        <span class="badge bg-warning">{{ $pendingRequests }}</span>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <a href="{{ route('admin.approved-books') }}" class="btn btn-outline-success w-100 d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <i class="fas fa-check-circle me-2"></i>
-                                            <span>Approved Books</span>
-                                        </div>
-                                        <span class="badge bg-success">{{ $totalBooks }}</span>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <a href="{{ route('admin.users') }}" class="btn btn-outline-info w-100 d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <i class="fas fa-users me-2"></i>
-                                            <span>Manage Users</span>
-                                        </div>
-                                        <span class="badge bg-info">{{ $totalUsers }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Recent Book Requests -->
             <div class="row">
                 <div class="col-md-12">

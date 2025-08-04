@@ -65,6 +65,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/book-requests/{bookRequest}/reject', [AdminController::class, 'rejectBookRequest'])->name('book-requests.reject');
         Route::get('/approved-books', [AdminController::class, 'approvedBooks'])->name('approved-books');
         Route::patch('/approved-books/{approvedBook}/status', [AdminController::class, 'updateApprovedBookStatus'])->name('approved-books.update-status');
+        
+        // User Management Routes
         Route::get('/users', [AdminController::class, 'users'])->name('users');
+        Route::get('/users/{user}', [AdminController::class, 'showUser'])->name('users.show');
+        Route::patch('/users/{user}/status', [AdminController::class, 'updateUserStatus'])->name('users.update-status');
+        Route::patch('/users/{user}/role', [AdminController::class, 'updateUserRole'])->name('users.update-role');
+        Route::patch('/users/{user}/wallet', [AdminController::class, 'updateUserWallet'])->name('users.update-wallet');
+        Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
     });
 });

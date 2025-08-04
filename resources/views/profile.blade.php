@@ -101,51 +101,6 @@
                     </form>
                 </div>
             </div>
-            
-            <!-- Account Statistics -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h5 class="mb-0">
-                        <i class="fas fa-chart-bar me-2"></i>Account Statistics
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3 text-center">
-                            <h4 class="text-primary">{{ \Carbon\Carbon::parse(Auth::user()->created_at)->diffForHumans() }}</h4>
-                            <small class="text-muted">Member Since</small>
-                        </div>
-                        
-                        @if(Auth::user()->role === 'lender')
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-success">{{ App\Models\Book::where('lender_id', Auth::id())->count() }}</h4>
-                                <small class="text-muted">Books Listed</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-warning">{{ App\Models\Book::where('lender_id', Auth::id())->where('status', 'rented')->count() }}</h4>
-                                <small class="text-muted">Currently Rented</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-info">${{ number_format(Auth::user()->wallet_balance ?? 0, 2) }}</h4>
-                                <small class="text-muted">Total Earned</small>
-                            </div>
-                        @else
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-success">5</h4>
-                                <small class="text-muted">Books Rented</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-warning">2</h4>
-                                <small class="text-muted">Active Rentals</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <h4 class="text-info">$156</h4>
-                                <small class="text-muted">Total Spent</small>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

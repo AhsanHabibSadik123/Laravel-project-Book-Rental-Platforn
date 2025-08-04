@@ -95,9 +95,25 @@ class User extends Authenticatable
     }
 
     /**
+     * Rentals as borrower (alternative name for withCount)
+     */
+    public function rentalsAsBorrower()
+    {
+        return $this->hasMany(Rental::class, 'borrower_id');
+    }
+
+    /**
      * Rentals as lender
      */
     public function lentRentals()
+    {
+        return $this->hasMany(Rental::class, 'lender_id');
+    }
+
+    /**
+     * Rentals as lender (alternative name for withCount)
+     */
+    public function rentalsAsLender()
     {
         return $this->hasMany(Rental::class, 'lender_id');
     }
